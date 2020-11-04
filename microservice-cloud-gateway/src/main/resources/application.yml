@@ -1,0 +1,29 @@
+
+server:
+  port: 8100
+
+spring:
+  application:
+    name: microservice-cloud-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false #true：表明gateway开启服务注册和发现的功能，使用serviceId就可以转发到对应的服务接口上
+                         #false：表明gateway隐藏serviceId，使用配置相应routes（如下：user_route）
+          lower-case-service-id: true #是将请求路径上的服务名配置为小写（因为服务注册的时候，向注册中心注册时将服务名转成大写的了）
+      routes:
+      - id: user_route
+        uri: lb://MICROSERVICE-PROVIDER-USER #以lb://开头（lb代表从注册中心获取服务）
+        predicates:
+          - Path=/user/**
+        filters:
+          - StripPrefix=1
+          - AddRequestParameter=name, wangjun #给访问user的每个接口都增加一个parameter（“name”），值是wangjun
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ #注册到刚才那台Eureka Server地址
+  instance:
+    prefer-ip-address: true
