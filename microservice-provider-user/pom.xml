@@ -31,4 +31,8 @@
 
     </dependencies>
 
+    <build>
+        <finalName>microservice-provider-user</finalName>
+    </build>
+
 </project>
