@@ -37,4 +37,8 @@
 
     </dependencies>
 
+    <build>
+        <finalName>microservice-consumer-movie-feign</finalName>
+    </build>
+
 </project>
