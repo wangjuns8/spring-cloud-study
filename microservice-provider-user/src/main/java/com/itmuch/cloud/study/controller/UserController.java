@@ -29,7 +29,7 @@ public class UserController {
     @Value("${server.port}")
     private String serverPort;
 
-    private static final String template = "Hello, user: %s!";
+    private static final String template = "Hello, docker user: %s!";
     private final AtomicLong counter = new AtomicLong();
 
     @GetMapping("/test")
