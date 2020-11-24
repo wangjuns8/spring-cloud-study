@@ -1,5 +1,5 @@
 #基于openjdk:8
-FROM openjdk:latest
+FROM openjdk:8
 
 # 指定当前操作目录
 WORKDIR /work/project
