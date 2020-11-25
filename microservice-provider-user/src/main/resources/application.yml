@@ -10,7 +10,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://49.232.150.148:8761/ #注册到刚才那台Eureka Server地址
+      defaultZone: http://49.232.150.148:8761/eureka/ #注册到刚才那台Eureka Server地址
 
 
 #eureka:
