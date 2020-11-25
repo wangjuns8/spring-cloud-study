@@ -1,8 +1,4 @@
-#基于openjdk:8
-FROM openjdk:8
-
-# 指定当前操作目录
-WORKDIR /work/project
-
-#容器启动后执行的操作
-CMD java -jar /microservice-discovery-eureka.jar
+FROM java:8-jre
+VOLUME /tmp
+ADD *.jar app.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
