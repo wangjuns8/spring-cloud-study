@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
@@ -29,10 +30,16 @@ public class SegmentController {
         List<SegmentJobVO> data = new ArrayList<>();
 
         if(segmentid.equals("21"))
-            data.add(new SegmentJobVO("adf15345", "1111111", "21", new Date(), "117", "211,212"));
+            data.add(new SegmentJobVO("adf15345", "1111111", "21", strDate(), "117", "211,212"));
         else
-            data.add(new SegmentJobVO("adf15345", "1111111", "22", new Date(), "117", "221,222,223,224"));
+            data.add(new SegmentJobVO("adf15345", "1111111", "22", strDate(), "117", "221,222,223,224"));
 
         return JSONObject.toJSONString(new Result(0, "SUCCESS", data));
+    }
+
+    String strDate() {
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String str = sf.format(new Date());
+        return str;
     }
 }
