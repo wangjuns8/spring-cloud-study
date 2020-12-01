@@ -1,0 +1,18 @@
+
+server:
+  port: 8023
+spring:
+  application:
+    name: microservice-nacos-config-client
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://localhost:8848
+      config:
+        server-addr: http://localhost:8848
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: true
+

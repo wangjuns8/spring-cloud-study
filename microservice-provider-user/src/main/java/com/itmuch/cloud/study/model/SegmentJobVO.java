@@ -11,11 +11,12 @@ public class SegmentJobVO {
     private String segmentjobid;
     private String batchcode;
     private String segmentid;
-    private String planstarttime;
+    //接受application.yml里设置的全局时间格式：yyyy-MM-dd HH:mm:ss
+    private Date planstarttime;
     private String jobstate;
     private String units;
 
-    public SegmentJobVO(String segmentjobid, String batchcode, String segmentid, String planstarttime, String jobstate, String units) {
+    public SegmentJobVO(String segmentjobid, String batchcode, String segmentid, Date planstarttime, String jobstate, String units) {
         this.segmentjobid = segmentjobid;
         this.batchcode = batchcode;
         this.segmentid = segmentid;

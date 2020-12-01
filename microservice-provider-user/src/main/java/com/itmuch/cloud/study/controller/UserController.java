@@ -20,14 +20,16 @@ import java.util.concurrent.atomic.AtomicLong;
 @Slf4j
 public class UserController {
 
-    @Autowired
-    private DiscoveryClient discoveryClient;
-    @Qualifier("eurekaRegistration")
-    @Autowired
-    private Registration registration; // 服务注册
+//    @Autowired
+//    private DiscoveryClient discoveryClient;
+//    @Qualifier("eurekaRegistration")
+//    @Autowired
+//    private Registration registration; // 服务注册
 
     @Value("${server.port}")
     private String serverPort;
+    @Value("${spring.application.name}")
+    private String applicationName;
 
     private static final String template = "Hello, docker user: %s!";
     private final AtomicLong counter = new AtomicLong();
@@ -43,22 +45,24 @@ public class UserController {
      */
     @GetMapping("/instanceinfo")
     public String showInfo() {
-        String result = "NULL!";
-        ServiceInstance instance = serviceInstance();
-        if(instance!=null)
-            result = String.format("host:port= %s, service_id: %s", instance.getUri(), instance.getServiceId());
+//        String result = "NULL!";
+//        ServiceInstance instance = serviceInstance();
+//        if(instance!=null)
+//            result = String.format("host:port= %s, service_id: %s", instance.getUri(), instance.getServiceId());
+
+        String result = String.format("host:port= %s, service_id: %s", serverPort, applicationName);
         log.info(result);
         return "[INSTANCE-INFO] : " + result;
     }
 
-    public ServiceInstance serviceInstance() {
-        List<ServiceInstance> list = discoveryClient.getInstances(registration.getServiceId());
-        if (list != null && list.size() > 0) {
-            for(ServiceInstance itm : list){
-                if(!StringUtils.isBlank(serverPort) && itm.getPort() == Integer.valueOf(serverPort))
-                    return itm;
-            }
-        }
-        return null;
-    }
+//    public ServiceInstance serviceInstance() {
+//        List<ServiceInstance> list = discoveryClient.getInstances(registration.getServiceId());
+//        if (list != null && list.size() > 0) {
+//            for(ServiceInstance itm : list){
+//                if(!StringUtils.isBlank(serverPort) && itm.getPort() == Integer.valueOf(serverPort))
+//                    return itm;
+//            }
+//        }
+//        return null;
+//    }
 }
